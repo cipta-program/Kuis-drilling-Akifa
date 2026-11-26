@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis Drilling AKIFA - Media Asesmen & Pembelajaran Interaktif</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Google Fonts: Fredoka & Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS Tosca Elegan -->
+  <link rel="stylesheet" href="style.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            fredoka: ['Fredoka', 'sans-serif'],
+            nunito: ['Nunito', 'sans-serif'],
+          },
+          colors: {
+            tosca: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              200: '#99f6e4',
+              300: '#5eead4',
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              800: '#115e59',
+              900: '#134e4a',
+            }
+          },
+          borderWidth: {
+            '3': '3px',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gradient-to-b from-teal-50/70 via-cyan-50/40 to-slate-50 min-h-screen text-slate-800 flex flex-col relative selection:bg-teal-200 selection:text-teal-900">
+
+  <!-- Floating Ambient Elements (Subtle & Elegan) -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="absolute top-10 left-8 text-4xl animate-float opacity-20 select-none">✨</div>
+    <div class="absolute top-32 right-12 text-4xl animate-float-reverse opacity-25 select-none">🎯</div>
+    <div class="absolute top-1/2 left-6 text-3xl animate-float opacity-15 select-none">💡</div>
+    <div class="absolute top-2/3 right-10 text-4xl animate-float-reverse opacity-20 select-none">⭐</div>
+    <div class="absolute bottom-12 left-16 text-3xl animate-float opacity-20 select-none">📖</div>
+  </div>
+
+  <!-- Header Navbar Nuansa Tosca Elegan -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b-4 border-teal-500 shadow-sm no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+      
+      <!-- Logo Branding Kuis Drilling AKIFA -->
+      <div id="btnHomeNav" class="flex items-center gap-3 cursor-pointer group select-none">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-teal-600 to-cyan-500 flex items-center justify-center text-2xl shadow-md shadow-teal-500/20 group-hover:scale-105 transition-transform text-white">
+          🎯
+        </div>
+        <div>
+          <span class="text-xl sm:text-2xl font-black tracking-tight text-slate-900 group-hover:text-teal-600 transition-colors flex items-center gap-1.5">
+            Kuis Drilling <span class="text-teal-600 drop-shadow-sm">AKIFA</span>
+          </span>
+          <span class="text-[10px] sm:text-xs font-extrabold text-teal-700/80 block -mt-1 tracking-wider uppercase">
+            Media Asesmen & Pembelajaran Interaktif SD
+          </span>
+        </div>
+      </div>
+
+      <!-- Controls & Actions -->
+      <div class="flex items-center gap-2">
+        <!-- Button Sound Toggle -->
+        <button id="btnSoundToggle" title="Nyalakan/Matikan Suara Efek" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-teal-50 text-teal-800 border-2 border-teal-300 hover:bg-teal-100 transition font-bold text-xs sm:text-sm">
+          <span class="text-base">🔊</span>
+          <span class="hidden sm:inline">Suara: ON</span>
+        </button>
+
+        <!-- Button TTS Voice Toggle -->
+        <button id="btnTtsToggle" title="Nyalakan/Matikan Pembacaan Soal Otomatis" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-50 text-cyan-800 border-2 border-cyan-300 hover:bg-cyan-100 transition font-bold text-xs sm:text-sm">
+          <span class="text-base">🗣️</span>
+          <span class="hidden md:inline">Bacakan: ON</span>
+        </button>
+
+        <!-- Button Manage / Add Quiz (Untuk Guru & Ortu) -->
+        <button id="btnManageQuiz" title="Kelola / Tambah Soal Kuis Baru" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-teal-700 text-white hover:bg-teal-800 transition font-extrabold text-xs sm:text-sm shadow-sm">
+          <span>✍️</span>
+          <span class="hidden sm:inline">Kelola Soal</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 relative z-10" id="mainContent">
+    <!-- Konten dinamis dirender melalui app.js -->
+  </main>
+
+  <!-- Modal Container -->
+  <div id="modalContainer"></div>
+
+  <!-- Footer Tosca Elegan -->
+  <footer class="mt-auto py-5 border-t-2 border-teal-100 bg-white/80 text-center text-xs sm:text-sm text-slate-500 font-semibold no-print relative z-10">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-1.5 text-teal-900 font-bold">
+        <span>🎯 Kuis Drilling AKIFA — Platform Asesmen & Latihan Soal Interaktif Kurikulum Merdeka</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-bold text-teal-700">
+        <span class="flex items-center gap-1">🌱 Sahabat Belajar Siswa Cerdas</span>
+        <button onclick="handleResetToDefault()" class="hover:text-rose-600 underline text-slate-500 hover:text-rose-600 transition">Reset Data</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="sounds.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
